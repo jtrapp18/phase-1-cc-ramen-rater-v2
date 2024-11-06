@@ -4,7 +4,7 @@
   "description": "practice fetch requests, using an API, responding to user events, updating the dom",
   "main": "index.js",
   "scripts": {
-    "test": "vitest --run --environment happy-dom"
+    "test": "vitest --run --environment happy-dom --bail 1"
   },
   "repository": {
     "type": "git",
