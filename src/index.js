@@ -45,8 +45,20 @@ const addSubmitListener = () => {
       body: JSON.stringify(ramen)
       })
       .then(res => res.json())
-      .then(ramen => console.log(ramen))
+      .then(ramen => renderRamen(ramen))
   })
+}
+
+const renderRamen = ramen => {
+  const menu = document.querySelector("#ramen-menu");
+
+  const newItem = document.createElement("img");
+  newItem.src = ramen.image;
+  newItem.alt = "ramen";
+
+  menu.append(newItem);
+
+  newItem.addEventListener("click", () => handleClick(ramen));
 }
 
 const displayRamens = () => {
@@ -61,18 +73,10 @@ const displayRamens = () => {
   })
   .then(ramens => {
     const menu = document.querySelector("#ramen-menu");
-    ramens.forEach(ramen => {
-      const newItem = document.createElement("img");
-      newItem.src = ramen.image;
-      newItem.alt = "ramen";
+    ramens.forEach(renderRamen);
 
-      menu.append(newItem);
-
-      newItem.addEventListener("click", () => handleClick(ramen));
-    
-    // show first menu item by default
-    handleClick(ramens[0]);
-    })  
+    // show first menu item by default    
+    handleClick(ramens[0]);    
   })
     .catch(e => console.error(e))
 };
@@ -145,6 +149,9 @@ const addDeleteEvent = () => {
         element.src === ramenImg.src);
 
       ramenPreview.remove()
+      
+      // show first menu item by default    
+      handleClick(ramens[0]);    
 
       // remove menu item in the backend
       const ramenDetail = document.querySelector("#ramen-detail");
@@ -180,7 +187,7 @@ const main = () => {
   addDeleteEvent();
 }
 
-main()
+document.addEventListener("DOMContentLoaded", () => {main()})
 
 // Export functions for testing
 export {

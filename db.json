@@ -1,12 +1,12 @@
 {
   "ramens": [
     {
-      "id": 1,
-      "name": "Shoyu Ramen",
-      "restaurant": "Nonono",
-      "image": "./assets/ramen/shoyu.jpg",
-      "rating": 7,
-      "comment": "Delish. Can't go wrong with a classic!"
+        "id": 1,
+        "name": "Shoyu Ramen",
+        "restaurant": "Nonono",
+        "image": "./assets/ramen/shoyu.jpg",
+        "rating": 7,
+        "comment": "Delish. Can't go wrong with a classic!"
     },
     {
       "id": 2,
@@ -20,9 +20,9 @@
       "id": 3,
       "name": "Nirvana Shiromaru",
       "restaurant": "Ippudo",
-      "image": "http://localhost:8080/assets/ramen/nirvana.jpg",
+      "image": "./assets/ramen/nirvana.jpg",
       "rating": "7",
-      "comment": "Do buy the hype!"
+      "comment": "Do buy the hype."
     },
     {
       "id": 4,
