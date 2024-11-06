@@ -154,9 +154,6 @@ const addDeleteEvent = () => {
 
       ramenPreview.remove()
 
-      // show first menu item by default    
-      handleClick(ramens[0]);    
-
       // remove menu item in the backend
       const ramenDetail = document.querySelector("#ramen-detail");
 
@@ -173,8 +170,11 @@ const addDeleteEvent = () => {
         return res.json();
       })
       .then(ramen => console.log("DELETED", ramen))
-      .catch(e => console.error(e))}
+      .catch(e => console.error(e))
 
+      // refresh to show first ramen
+      displayRamens();
+    }
     else {
       alert("That was a close one!")
     }
