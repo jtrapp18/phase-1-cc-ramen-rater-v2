@@ -36,6 +36,10 @@ const addSubmitListener = () => {
     ramen.rating = ramenForm.rating.value;
     ramen.comment = document.querySelector("#new-comment").value;
 
+    // display new ramen on page
+    renderRamen(ramen)
+    handleClick(ramen);
+
     // add new menu item to backend data
     fetch(`http://localhost:3000/ramens`, {
       method: 'POST',
@@ -45,7 +49,7 @@ const addSubmitListener = () => {
       body: JSON.stringify(ramen)
       })
       .then(res => res.json())
-      .then(ramen => renderRamen(ramen))
+      .then(ramen => console.log("NEW", ramen))
   })
 }
 
@@ -149,7 +153,7 @@ const addDeleteEvent = () => {
         element.src === ramenImg.src);
 
       ramenPreview.remove()
-      
+
       // show first menu item by default    
       handleClick(ramens[0]);    
 
