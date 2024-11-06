@@ -37,7 +37,7 @@ const addSubmitListener = () => {
     ramen.comment = document.querySelector("#new-comment").value;
 
     // display new ramen on page
-    renderRamen(ramen)
+    renderRamen(ramen);
     handleClick(ramen);
 
     // add new menu item to backend data
@@ -59,6 +59,7 @@ const renderRamen = ramen => {
   const newItem = document.createElement("img");
   newItem.src = ramen.image;
   newItem.alt = "ramen";
+  newItem.className = ramen.id;
 
   menu.append(newItem);
 
@@ -85,6 +86,24 @@ const displayRamens = () => {
     .catch(e => console.error(e))
 };
 
+const findFirst = () => {
+  const ramenID = document.querySelector("#ramen-menu img").className;
+
+  // grab data from backend and populate photos on page
+  fetch(`http://localhost:3000/ramens/${ramenID}`)
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    return res.json();
+  })
+  .then(ramen => {
+    // show first menu item by default    
+    handleClick(ramen);    
+  })
+    .catch(e => console.error(e));
+};
+
 const createRamenObj = () => {
 
   // identify current ramen information
@@ -107,7 +126,7 @@ const addEditEvent = () => {
     e.preventDefault();
     
     // identify current ramen information and create a copy of the object 
-    const ramen = createRamenObj()
+    const ramen = createRamenObj();
     const ramenEdited = { ...ramen };
 
     // update ramen object with the new information
@@ -133,7 +152,7 @@ const addEditEvent = () => {
       return res.json();
     })
     .then(ramen => console.log("EDITED", ramen))
-    .catch(e => console.error(e))
+    .catch(e => console.error(e));
   })
 }
 
@@ -170,13 +189,13 @@ const addDeleteEvent = () => {
         return res.json();
       })
       .then(ramen => console.log("DELETED", ramen))
-      .catch(e => console.error(e))
+      .catch(e => console.error(e));
 
       // refresh to show first ramen
-      displayRamens();
+      findFirst();
     }
     else {
-      alert("That was a close one!")
+      alert("That was a close one!");
     }
 
     })
@@ -191,7 +210,7 @@ const main = () => {
   addDeleteEvent();
 }
 
-document.addEventListener("DOMContentLoaded", () => {main()})
+document.addEventListener("DOMContentLoaded", () => {main()});
 
 // Export functions for testing
 export {
